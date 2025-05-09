@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Workout Progress Tracker</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      background-color: #f8f8f8;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center center;
+      color: white;
+      padding: 80px 20px 20px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .top-bar h1 {
+      margin: 0;
+      font-size: 3em;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .quote-box {
+      background-color: white;
+      padding: 10px 30px;
+      border-radius: 10px;
+      max-width: 700px;
+      width: 90%;
+      margin-top: 10px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .quote {
+      color: #ff66b2;
+      font-size: 1.8em;
+      font-style: italic;
+      margin: 0;
+    }
+
+    .recent-title {
+      text-align: center;
+      font-size: 2em;
+      margin-top: 20px;
+      color: #ff66b2;
+      font-weight: bold;
+    }
+
+    /* Dashboard */
+    .content-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .white-box {
+      background-color: white;
+      border: 2px solid #ff66b2;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 300px;
+      position: relative;
+    }
+
+    h3 {
+      color: #ff66b2;
+      text-align: center;
+    }
+
+    .checklist-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .checklist-section li {
+      padding: 10px;
+      font-size: 1.2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      position: relative;
+    }
+
+    .checklist-section li input {
+      transform: scale(1.3);
+    }
+
+    .progress-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    .progress-bar {
+      background-color: #eee;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 20px;
+      margin: 20px 0;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background-color: #ff66b2;
+      transition: width 0.3s ease-in-out;
+    }
+
+    .add-workout-section input {
+      padding: 10px;
+      font-size: 1em;
+      width: 80%;
+      margin: 10px auto;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      display: block;
+    }
+
+    .add-workout-section button {
+      background-color: #ff66b2;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin: 0 auto;
+    }
+
+    .add-workout-section button:hover {
+      background-color: #e0559e;
+    }
+
+    .added-workout {
+      margin-top: 10px;
+      color: green;
+      text-align: center;
+    }
+
+    .flying-emoji {
+      position: absolute;
+      animation: flyOut 2s forwards;
+      font-size: 3em;
+      pointer-events: none;
+    }
+
+    @keyframes flyOut {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      100% {
+        transform: translateX(200px) translateY(-200px) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    .congrats {
+      font-size: 2em;
+      color: #ff66b2;
+      cursor: pointer;
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .congrats:hover::after {
+      content: "🎉🎊🎈🎇🎆🥳";
+      position: absolute;
+      font-size: 3em;
+      animation: burst 1s forwards;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @keyframes burst {
+      0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(-50%);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1.5) translateY(-100px);
+      }
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #ff66b2;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="top-bar">
+    <h1>EndorphinEdge</h1>
+    <div class="quote-box">
+      <p class="quote">"Chase goals, not excuses!"</p>
+    </div>
+  </div>
+
+  <!-- Recent Workouts Title -->
+  <div class="recent-title">Workout Goals</div>
+
+  <!-- Main Content -->
+  <div class="content-container">
+    <!-- Checklist -->
+    <div class="white-box checklist-section">
+      <h3>🎯 Workout Checklist</h3>
+      <ul>
+        <li><span>Complete 4 Workouts</span> <input type="checkbox" onclick="updateProgress('💪')" /></li>
+        <li><span>Burn 2000+ kcal</span> <input type="checkbox" onclick="updateProgress('🏃')" /></li>
+        <li><span>Drink 2L of Water Daily</span> <input type="checkbox" onclick="updateProgress('💧')" /></li>
+        <li><span>Stretch Every Morning</span> <input type="checkbox" onclick="updateProgress('🤸')" /></li>
+        <li><span>Go for One Run</span> <input type="checkbox" onclick="updateProgress('🏃‍♂️')" /></li>
+      </ul>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="white-box progress-section" id="progressBox">
+      <h3>📈 Progress</h3>
+      <div class="progress-bar">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
+      <p><strong>Progress:</strong> <span id="progress-text">0%</span> completed</p>
+    </div>
+
+    <!-- Add New Workout -->
+    <div class="white-box add-workout-section">
+      <h3>📝 Add New Workout</h3>
+      <input type="text" id="newWorkout" placeholder="e.g., Do yoga every evening" />
+      <button onclick="addWorkout()">Add Workout</button>
+      <p id="addedMessage" class="added-workout"></p>
+    </div>
+
+    <!-- Workout List Section -->
+    <div class="white-box workout-list-section">
+      <h3>📜 Workout List</h3>
+      <ul id="workoutList">
+        <!-- Fetched workouts will appear here -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2025 Workout Progress Tracker. All Rights Reserved.</p>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const workouts = [];
+
+    function updateProgress(emoji) {
+      const checkboxes = document.querySelectorAll('.checklist-section input[type="checkbox"]');
+      let checkedCount = 0;
+
+      checkboxes.forEach(checkbox => {
+        if (checkbox.checked) checkedCount++;
+      });
+
+      let progress = (checkedCount / checkboxes.length) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+      document.getElementById('progress-text').textContent = Math.round(progress) + '%';
+    }
+
+    function addWorkout() {
+      const newWorkout = document.getElementById("newWorkout").value;
+      if (newWorkout) {
+        workouts.push(newWorkout);
+        displayWorkouts();
+        document.getElementById("addedMessage").textContent = `"${newWorkout}" added!`;
+
+        // Reset the input box
+        document.getElementById("newWorkout").value = '';
+      }
+    }
+
+    function displayWorkouts() {
+      const workoutList = document.getElementById('workoutList');
+      workoutList.innerHTML = ''; // Clear existing list
+
+      workouts.forEach((workout, index) => {
+        const li = document.createElement('li');
+        li.textContent = workout;
+        workoutList.appendChild(li);
+      });
+    }
+
+        // Function to make flying emojis appear
+    function addFlyingEmoji() {
+      const emoji = document.createElement('span');
+      emoji.className = 'flying-emoji';
+      emoji.textContent = '💥';
+      document.body.appendChild(emoji);
+
+      // Set initial position to the button
+      const congratsButton = document.querySelector('.congrats');
+      const buttonRect = congratsButton.getBoundingClientRect();
+      emoji.style.left = buttonRect.left + 'px';
+      emoji.style.top = buttonRect.top + 'px';
+
+      // Trigger animation
+      setTimeout(() => {
+        emoji.remove(); // Remove the emoji after animation
+      }, 2000); // After the animation completes (2 seconds)
+    }
+
+    // Function for congratulation popup and flying emojis
+    function showCongrats() {
+      const congratsButton = document.querySelector('.congrats');
+      congratsButton.textContent = '🎉 Well Done!';
+      congratsButton.classList.add('show-congratulations');
+      addFlyingEmoji();
+    }
+
+    // Call showCongrats on workout completion (you can trigger this on some other event)
+    setTimeout(() => {
+      showCongrats();
+    }, 5000); // Trigger after 5 seconds (or on workout tracker event)
+  </script>
+</body>
+</html>

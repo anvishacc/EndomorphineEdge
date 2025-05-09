@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Leaderboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      background-image: url('background.jpg'); /* Use same image */
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 80px 20px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .top-bar h1 {
+      margin: 0;
+      font-size: 3em;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .quote-box {
+      background-color: white;
+      padding: 10px 30px;
+      border-radius: 10px;
+      max-width: 700px;
+      width: 90%;
+      margin-top: 10px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .quote {
+      font-style: italic;
+      color: #ff66b2;
+      font-size: 1.2em;
+      margin: 0;
+    }
+
+    /* Leaderboard Content */
+    .leaderboard-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        background-color: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(255, 105, 180, 0.25);
+        border: 2px solid #ff66b2; /* PINK BORDER ADDED */
+}
+
+    h2 {
+      text-align: center;
+      color: #ff66b2;
+      font-size: 2.5em;
+      margin-bottom: 30px;
+    }
+
+    .search-bar {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      width: 250px;
+      border: 2px solid #ff66b2;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 16px;
+      border-bottom: 1px solid #ffd5e6;
+    }
+
+    th {
+      background-color: #ffe5f0;
+      color: #ff66b2;
+    }
+
+    tr:hover {
+      background-color: #fff0f7;
+      transition: 0.2s ease;
+    }
+
+    .medal {
+      font-size: 1.2em;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #ff66b2;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <h1>EndorphinEdge</h1>
+    <div class="quote-box">
+      <p class="quote">"Greatness is earned, not given."</p>
+    </div>
+  </div>
+
+  <!-- Leaderboard Content -->
+  <div class="leaderboard-container">
+    <h2>🏆 Leaderboard</h2>
+
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search by name..." onkeyup="filterTable()" />
+    </div>
+
+    <table id="leaderboardTable">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>🥇 1</td>
+          <td>Jane Doe</td>
+          <td>1980</td>
+        </tr>
+        <tr>
+          <td>🥈 2</td>
+          <td>Mary Smith (you)</td>
+          <td>1850</td>
+        </tr>
+        <tr>
+          <td>🥉 3</td>
+          <td>Sarah Lee</td>
+          <td>920</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Anvisha Chopra</td>
+          <td>580</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Tamannah Kalra</td>
+          <td>260</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2025 EndorphinEdge. All Rights Reserved.</p>
+  </div>
+
+  <!-- JS Filter Function -->
+  <script>
+    function filterTable() {
+      const input = document.getElementById("searchInput");
+      const filter = input.value.toUpperCase();
+      const table = document.getElementById("leaderboardTable");
+      const tr = table.getElementsByTagName("tr");
+
+      for (let i = 1; i < tr.length; i++) {
+        const td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          const txtValue = td.textContent || td.innerText;
+          tr[i].style.display = txtValue.toUpperCase().includes(filter) ? "" : "none";
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

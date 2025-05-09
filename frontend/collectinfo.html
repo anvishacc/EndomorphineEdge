@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Collect Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      background-color: #ffe6f0;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 80px 20px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .top-bar h1 {
+      margin: 0;
+      font-size: 3em;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .quote-box {
+      background-color: white;
+      padding: 10px 30px;
+      border-radius: 10px;
+      max-width: 700px;
+      width: 90%;
+      margin-top: 10px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .quote {
+      font-style: italic;
+      color: #ff66b2;
+      font-size: 1.2em;
+      margin: 0;
+    }
+
+    /* Form Container */
+    .form-container {
+      background-color: white;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #ff66b2;
+    }
+
+    input[type="number"],
+    input[type="checkbox"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1em;
+      background: #fff0f5;
+    }
+
+    .checkbox-group {
+      margin-top: 20px;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      font-weight: normal;
+      color: #555;
+    }
+
+    .checkbox-group input {
+      margin-right: 10px;
+      width: auto;
+    }
+
+    #dashboardBtn {
+      display: none;
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background-color: #ff66b2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #dashboardBtn:hover {
+      background-color: #e0559c;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #ff66b2;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <h1>Welcome to EndorphinEdge</h1>
+    <div class="quote-box">
+      <p class="quote">"Fitness starts with knowing your body."</p>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <form id="infoForm">
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="number" id="age" required />
+      </div>
+      <div class="form-group">
+        <label for="weight">Weight (kg)</label>
+        <input type="number" id="weight" required />
+      </div>
+      <div class="form-group">
+        <label for="height">Height (cm)</label>
+        <input type="number" id="height" required />
+      </div>
+
+      <div class="checkbox-group">
+        <label><input type="checkbox" class="permission"> Allow access to recent workouts</label>
+        <label><input type="checkbox" class="permission"> Allow access to workout goals</label>
+        <label><input type="checkbox" class="permission"> Allow access to fitness analytics</label>
+        <label><input type="checkbox" class="permission"> Allow access to leaderboard</label>
+        <label><input type="checkbox" class="permission"> Allow access to badges & achievements</label>
+      </div>
+
+      <button id="dashboardBtn" type="button" onclick="redirectToDashboard()">See Dashboard</button>
+    </form>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 EndorphinEdge. All rights reserved.
+  </div>
+
+  <script>
+    const checkboxes = document.querySelectorAll('.permission');
+    const dashboardBtn = document.getElementById('dashboardBtn');
+
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        const allChecked = [...checkboxes].every(cb => cb.checked);
+        dashboardBtn.style.display = allChecked ? 'block' : 'none';
+      });
+    });
+
+    function redirectToDashboard() {
+      // Simple redirect to Dashboard page
+      window.location.href = 'Dashboard.html';
+    }
+  </script>
+
+</body>
+</html>

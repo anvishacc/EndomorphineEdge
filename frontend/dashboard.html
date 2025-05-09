@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EndorphinEdge Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      background-image: url('background.jpg'); /* Image at the top */
+      background-size: cover;
+      background-position: center center;
+      color: white;
+      padding: 80px 20px 20px 20px; /* Adjusted padding for overlap effect */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .top-bar h1 {
+      margin: 0;
+      font-size: 3em;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    /* White Box Around Quote */
+    .quote-box {
+      background-color: white;
+      padding: 10px 30px;  /* Adjusted padding for more space */
+      border-radius: 10px;
+      max-width: 700px;  /* Increased width */
+      width: 90%;  /* Makes it responsive */
+      margin-top: 10px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: adds a slight shadow for a floating effect */
+      white-space: nowrap;  /* Ensures the quote stays on a single line */
+      overflow: hidden;  /* Prevents the quote from overflowing */
+      text-overflow: ellipsis; /* Truncates overflowed text with ellipsis */
+    }
+
+    .quote {
+      color: #ff66b2;
+      font-size: 1.8em; /* Adjusted font size for better fit */
+      font-style: italic;
+      margin: 0;
+    }
+
+    /* Container for sections */
+    .dashboard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    /* Add background image for the sections */
+    .dashboard .quick-view {
+      background-image: url('trueback.jpeg');
+      background-size: cover;
+      background-position: center center;
+      width: 85%;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    /* Quick view grid - 3 rows with 2 sections each */
+    .quick-view {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    /* Individual box styles */
+    .quick-view > div {
+      background-color: rgba(255, 255, 255, 0.8); /* White with opacity */
+      border: 2px solid #ff66b2;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      text-align: left;
+      position: relative;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .quick-view h3 {
+      color: #000000;
+      font-weight: bold;
+    }
+
+    .quick-view p {
+      font-size: 1em;
+      color: #333;
+    }
+
+    /* Hover Effect */
+    .quick-view > div:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .button {
+      background-color: #ff66b2;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: auto;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #e55d99;
+    }
+
+    .progress-bar {
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      height: 10px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .progress {
+      height: 100%;
+      background-color:palevioletred;
+      border-radius: 5px;
+    }
+
+    /* Footer section */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #ff66b2;
+      color: white;
+    }
+
+    /* Profile image */
+    .profile-img {
+      width: 160px;
+      height: 140px;
+      border: 1px solid #000;
+      margin-bottom: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    /* Profile image hover effect */
+    .profile-img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Animation for page load */
+    .dashboard div {
+      opacity: 0;
+      animation: fadeInUp 0.5s forwards;
+    }
+
+    .dashboard div:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    .dashboard div:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    .dashboard div:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    .dashboard div:nth-child(4) {
+      animation-delay: 0.8s;
+    }
+
+    .dashboard div:nth-child(5) {
+      animation-delay: 1s;
+    }
+
+    .dashboard div:nth-child(6) {
+      animation-delay: 1.2s;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <h1>EndorphinEdge</h1>
+    <!-- White box around the quote -->
+    <div class="quote-box">
+      <p class="quote" style="font-size: 1.5em;">"Push yourself because no one else is going to do it for you."</p>
+    </div>
+  </div>
+
+  <!-- Dashboard Main Content -->
+  <div class="dashboard">
+    <!-- Dashboard Title -->
+    <h2 style="font-size: 2.5em; color: palevioletred">Dashboard</h2>
+    <!-- Quick View Grid -->
+    <div class="quick-view">
+      <!-- User Profile Section -->
+      <div>
+        <h3>User Profile</h3>
+        <img src="profile1.jpg" alt="Profile Image" class="profile-img">
+        <p><strong>Name:</strong> Mary Smith</p>
+        <p><strong>Age:</strong> 25 | <strong>Weight:</strong> 70kg | <strong>Height:</strong> 175cm</p>
+        <a href="UserProfile.html" class="button">View Profile</a>
+      </div>
+
+      <!-- Recent Workouts Overview -->
+      <div>
+        <h3>Recent Workouts</h3>
+        <p><strong>Full Body Training:</strong> 45 minutes | <strong>Calories Burned:</strong> 500 | <strong>Date:</strong> May 3, 2025</p>
+        <p><strong>Morning Jog:</strong> 30 minutes | <strong>Calories Burned:</strong> 350 | <strong>Date:</strong> May 2, 2025</p>
+        <p><strong>Swimming:</strong> 60 minutes | <strong>Calories Burned:</strong> 700 | <strong>Date:</strong> May 1, 2025</p>
+        <a href="RecentWorkouts.html" class="button">View More</a>
+      </div>
+    </div>
+
+    <!-- Bottom Section - Row 2 and 3 -->
+    <div class="quick-view">
+      <!-- Workout Goals Section -->
+      <div>
+        <h3>Workout Goals</h3>
+        <p><strong>Weekly Goals:</strong> 0/5 workouts completed</p>
+        <p><strong>Calories Burned Goal:</strong> 1500 kcal</p>
+        <p><strong>Distance Goal:</strong> Run 20 km this month</p>
+        <div class="progress-bar">
+          <div class="progress" style="width: 80%;"></div>
+        </div>
+        <a href="WorkoutGoals.html" class="button">Edit Goals</a>
+      </div>
+
+      <!-- Fitness Analytics Section -->
+      <div>
+        <h3>Fitness Analytics</h3>
+        <p><strong>Total Workouts:</strong> 15</p>
+        <p><strong>Total Calories Burned:</strong> 4500 kcal</p>
+        <p><strong>Total Distance Covered:</strong> 50 km</p>
+        <a href="FitnessAnalytics.html" class="button">View Analytics</a>
+      </div>
+    </div>
+
+    <!-- Last Row -->
+    <div class="quick-view">
+      <!-- Leaderboard Section -->
+      <div>
+        <h3>Leaderboard</h3>
+        <p><strong>1st Place:</strong> Jane Doe | Calories Burned: 5000 kcal</p>
+        <p><strong>2nd Place (you):</strong> Mary Smith | Calories Burned: 4500 kcal</p>
+        <p><strong>3rd Place:</strong> Sarah Lee | Calories Burned: 4000 kcal</p>
+        <a href="Leaderboard.html" class="button">View Leaderboard</a>
+      </div>
+
+      <!-- Gamification & Rewards Section -->
+      <div>
+        <h3>Badges & Achievements</h3>
+        <p><strong>5/5 Workouts:</strong> Completed</p>
+        <p><strong>Top Cyclist:</strong> 1000 km</p>
+        <p><strong>Weekly Champion:</strong> 4/4 workouts</p>
+        <a href="BadgesAchievements.html" class="button">View Achievements</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2025 EndorphinEdge. All Rights Reserved.</p>
+  </div>
+
+</body>
+</html>

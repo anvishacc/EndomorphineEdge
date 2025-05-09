@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recent Workouts</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      background-color: #f8f8f8;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      background-image: url('background.jpg'); 
+      background-size: cover;
+      background-position: center center;
+      color: white;
+      padding: 80px 20px 20px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .top-bar h1 {
+      margin: 0;
+      font-size: 3em;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .quote-box {
+      background-color: white;
+      padding: 10px 30px;
+      border-radius: 10px;
+      max-width: 700px;
+      width: 90%;
+      margin-top: 10px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .quote {
+      font-style: italic;
+      color: #ff66b2;
+      font-size: 1.5em;
+      margin: 0;
+    }
+
+    /* Main Content */
+    .content-container {
+      margin: 20px;
+      padding: 0 20px;
+    }
+
+    h2 {
+      font-size: 3em;
+      color: #ff66b2;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    /* Workout Cards */
+    .workout-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      border: 3px solid #ff66b2;
+      margin-bottom: 20px;
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .workout-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .workout-card .details {
+      text-align: left;
+      font-size: 1.2em;
+      line-height: 1.5em;
+    }
+
+    .workout-card .details p {
+      margin: 5px 0;
+    }
+
+    .workout-card i {
+      font-size: 4em;
+      color: #ff66b2;
+      margin-left: 20px;
+    }
+
+    /* Calories Display */
+    .calories-display {
+      font-size: 2em;
+      font-weight: bold;
+      color: #ff66b2;
+      text-align: center;
+      margin: 40px 0;
+      animation: calorieGlow 2s infinite alternate;
+    }
+
+    @keyframes calorieGlow {
+      0% {
+        color: #ff66b2;
+      }
+      100% {
+        color: #ff3366;
+      }
+    }
+
+    /* Progress Section */
+    .progress-section {
+      margin-top: 40px;
+      text-align: center;
+      padding: 20px;
+      background-color: #f8f8f8;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-section h3 {
+      color: #ff66b2;
+      font-size: 2em;
+    }
+
+    .progress-section p {
+      font-size: 1.2em;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #ff66b2;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <h1>EndorphinEdge</h1>
+    <div class="quote-box">
+      <p class="quote">"Your only limit is you."</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content-container">
+    <h2>Recent Workouts</h2>
+
+    <!-- Workout Cards -->
+    <div class="workout-card">
+      <div class="details">
+        <p><strong>Workout:</strong> Full Body Strength</p>
+        <p><strong>Date:</strong> May 3, 2025</p>
+        <p><strong>Duration:</strong> 45 minutes</p>
+        <p><strong>Calories Burned:</strong> 500 kcal</p>
+      </div>
+      <i class="fas fa-dumbbell"></i>
+    </div>
+
+    <div class="workout-card">
+      <div class="details">
+        <p><strong>Workout:</strong> Morning Jog</p>
+        <p><strong>Date:</strong> May 2, 2025</p>
+        <p><strong>Duration:</strong> 30 minutes</p>
+        <p><strong>Calories Burned:</strong> 350 kcal</p>
+      </div>
+      <i class="fas fa-running"></i>
+    </div>
+
+    <div class="workout-card">
+      <div class="details">
+        <p><strong>Workout:</strong> Swimming</p>
+        <p><strong>Date:</strong> May 1, 2025</p>
+        <p><strong>Duration:</strong> 60 minutes</p>
+        <p><strong>Calories Burned:</strong> 700 kcal</p>
+      </div>
+      <i class="fas fa-swimmer"></i>
+    </div>
+
+    <!-- Calories Burned Display -->
+    <div class="calories-display">
+      <p>Calories Burned This Week: <span id="caloriesCount">1,550 kcal</span></p>
+    </div>
+
+    <!-- Progress Section -->
+    <div class="progress-section">
+      <h3>Your Progress</h3>
+      <canvas id="caloriesChart"></canvas>
+      <p><strong>Y-Axis:</strong> Calories Burned (kcal)</p>
+      <p><strong>X-Axis:</strong> Weeks</p>
+      <p>This graph shows the total calories burned for each week.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2025 EndorphinEdge. All Rights Reserved.</p>
+  </div>
+
+  <!-- Chart.js Script -->
+  <script>
+    const ctx = document.getElementById('caloriesChart').getContext('2d');
+    const caloriesChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        datasets: [{
+          label: 'Calories Burned',
+          data: [1550, 1700, 2000, 1800],
+          backgroundColor: 'rgba(255, 102, 178, 0.6)',
+          borderColor: 'rgba(255, 102, 178, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

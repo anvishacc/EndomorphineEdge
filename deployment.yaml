@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: endomorphineedge-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: endomorphineedge
+  template:
+    metadata:
+      labels:
+        app: endomorphineedge
+    spec:
+      containers:
+      - name: endomorphineedge
+        image: gcr.io/endomorphineedge/endomorphineedge:latest
+        ports:
+        - containerPort: 5000

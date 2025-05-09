@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fitness Analytics</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #333;
+    }
+
+    /* Header */
+    .top-bar {
+      background-image: url('background.jpg'); /* Same background */
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 60px 20px 20px;
+      text-align: center;
+    }
+
+    .top-bar h1 {
+      margin: 0;
+      font-size: 2.5em;
+      font-weight: bold;
+    }
+
+    .quote-box {
+      background-color: white;
+      padding: 10px 30px;
+      border-radius: 10px;
+      max-width: 700px;
+      width: 90%;
+      margin: 15px auto 0;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .quote {
+      font-style: italic;
+      color: #ff66b2;
+      font-size: 1.1em;
+      margin: 0;
+    }
+
+    /* Title */
+    .page-title {
+      text-align: center;
+      font-size: 2.5em;
+      color: #ff66b2;
+      margin-top: 40px;
+      
+      font-weight: bold;
+    }
+
+    /* Main Container */
+    .analytics-container {
+      max-width: 1000px;
+      margin: 30px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 20px;
+      border: 4px solid #ff66b2;
+      box-shadow: 0 10px 25px rgba(255, 105, 180, 0.25);
+    }
+
+    .analytics-item {
+      text-align: center;
+      margin: 30px 0;
+      font-size: 1.5em;
+      color: #ff66b2;
+      padding: 15px;
+      border-radius: 10px;
+      background-color: #ffe6f0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .analytics-item:hover {
+      transform: scale(1.05);
+    }
+
+    .analytics-item i {
+      font-size: 2.5em;
+      color: #ff66b2;
+      margin-bottom: 10px;
+    }
+
+    .analytics-item span {
+      display: block;
+      font-weight: bold;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #ff66b2;
+      color: white;
+      margin-top: 50px;
+    }
+
+    /* Pie Chart */
+    #goalProgressChart {
+      width: 250px !important;
+      height: 250px !important;
+      margin: 0 auto;
+    }
+  </style>
+
+  <!-- Load Chart.js for pie chart -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="top-bar">
+    <h1>EndorphinEdge</h1>
+    <div class="quote-box">
+      <p class="quote">"Your only limit is you! 💪"</p>
+    </div>
+  </div>
+
+  <!-- Page Title -->
+  <h2 class="page-title">Fitness Analytics 📊</h2>
+
+  <!-- Fitness Analytics Container -->
+  <div class="analytics-container">
+    <div class="analytics-item">
+      <i class="fas fa-running"></i>
+      <span>Total Steps: 15,320 🚶‍♂️</span> 
+    </div>
+    <div class="analytics-item">
+      <i class="fas fa-weight-hanging"></i>
+      <span>Weight Lifted: 125kg 🏋️‍♂️</span>
+    </div>
+    <div class="analytics-item">
+      <i class="fas fa-heartbeat"></i>
+      <span>Heart Rate: 132 bpm ❤️</span>
+    </div>
+    <div class="analytics-item">
+      <i class="fas fa-calendar-check"></i>
+      <span>Workouts Completed: 52 ✅</span>
+    </div>
+
+    <!-- Goal Progress - Pie Chart -->
+    <div class="analytics-item">
+      <i class="fas fa-trophy"></i>
+      <span>Goal Progress 🥇</span>
+      <canvas id="goalProgressChart" width="250" height="250"></canvas>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2025 EndorphinEdge. All Rights Reserved.</p>
+  </div>
+
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+  <!-- Chart.js to create the pie chart for Goal Progress -->
+  <script>
+    var ctx = document.getElementById('goalProgressChart').getContext('2d');
+    var goalProgressChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Completed', 'Remaining'],
+        datasets: [{
+          label: 'Goal Progress',
+          data: [80, 20], // Example data, 80% complete
+          backgroundColor: ['#ff66b2', '#d3d3d3'], // Pink and gray
+          borderColor: ['#fff', '#fff'],
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          tooltip: {
+            callbacks: {
+              label: function(tooltipItem) {
+                return tooltipItem.raw + '%';
+              }
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

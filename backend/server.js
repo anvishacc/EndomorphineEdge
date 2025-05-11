@@ -8,6 +8,7 @@ const userRoutes = require('./User');
 
 
 dotenv.config();
+console.log(process.env.MONGO_URI);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
